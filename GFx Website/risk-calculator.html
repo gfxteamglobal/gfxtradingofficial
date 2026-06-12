@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>GFx Risk Engine Pro</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+/* ================= BASE ================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Segoe UI",sans-serif;
+}
+
+body{
+  background:#f5f7fb;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* ================= APP ================= */
+.app{
+  width:950px;
+  background:#fff;
+  border-radius:18px;
+  display:flex;
+  overflow:hidden;
+  box-shadow:0 20px 60px rgba(0,0,0,0.12);
+}
+
+/* ================= LEFT ================= */
+.left{
+  width:50%;
+  padding:30px;
+  border-right:1px solid #eee;
+}
+
+h2{
+  font-size:20px;
+  margin-bottom:20px;
+}
+
+/* INPUTS */
+label{
+  font-size:12px;
+  color:#777;
+  display:block;
+  margin-top:10px;
+}
+
+input, select{
+  width:100%;
+  padding:12px;
+  margin-top:6px;
+  border-radius:10px;
+  border:1px solid #e5e7eb;
+  background:#f9fafc;
+  outline:none;
+  transition:0.2s;
+}
+
+input:focus, select:focus{
+  border-color:#22c55e;
+  box-shadow:0 0 0 3px rgba(34,197,94,0.15);
+}
+
+/* ================= SEARCH MARKET BOX ================= */
+.marketBox{
+  position:relative;
+}
+
+.marketDropdown{
+  position:absolute;
+  width:100%;
+  max-height:220px;
+  overflow-y:auto;
+  background:#fff;
+  border:1px solid #eee;
+  border-radius:12px;
+  margin-top:5px;
+  display:none;
+  z-index:10;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.marketItem{
+  padding:10px 12px;
+  cursor:pointer;
+  font-size:13px;
+}
+
+.marketItem:hover{
+  background:#f3f4f6;
+}
+
+/* ================= BUTTON ================= */
+button{
+  width:100%;
+  margin-top:15px;
+  padding:14px;
+  border:none;
+  border-radius:12px;
+  background:#22c55e;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+button:hover{
+  transform:translateY(-2px);
+}
+
+/* ================= RIGHT ================= */
+.right{
+  width:50%;
+  padding:30px;
+}
+
+.results-title{
+  font-size:18px;
+  margin-bottom:15px;
+}
+
+.result-item{
+  display:flex;
+  justify-content:space-between;
+  padding:10px 0;
+  border-bottom:1px solid #f1f1f1;
+}
+
+.result-item span{
+  font-size:13px;
+  color:#666;
+}
+
+.result-value{
+  font-weight:600;
+}
+
+/* ================= MOBILE ================= */
+@media(max-width:900px){
+  .app{flex-direction:column;width:95%;}
+  .left,.right{width:100%;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- LEFT -->
+<div class="left">
+
+<h2>Risk Calculator</h2>
+
+<label>Account Balance</label>
+<input type="number" id="balance">
+
+<label>Risk %</label>
+<input type="number" id="risk">
+
+<label>Stop Loss (pips)</label>
+<input type="number" id="sl">
+
+<label>Search Forex Market</label>
+
+<div class="marketBox">
+
+<input type="text" id="search" oninput="filterPairs()" placeholder="Search pair...">
+
+<div class="marketDropdown" id="dropdown"></div>
+
+</div>
+
+<label>Selected Pair</label>
+<input type="text" id="pair" value="EURUSD" readonly>
+
+<button onclick="calc()">Calculate</button>
+
+</div>
+
+<!-- RIGHT -->
+<div class="right">
+
+<div class="results-title">Results</div>
+
+<div class="result-item">
+  <span>Risk Amount</span>
+  <div class="result-value" id="riskAmt">0</div>
+</div>
+
+<div class="result-item">
+  <span>Position Units</span>
+  <div class="result-value" id="units">0</div>
+</div>
+
+<div class="result-item">
+  <span>Standard Lots</span>
+  <div class="result-value" id="lots">0</div>
+</div>
+
+<div class="result-item">
+  <span>Mini Lots</span>
+  <div class="result-value" id="mini">0</div>
+</div>
+
+<div class="result-item">
+  <span>Micro Lots</span>
+  <div class="result-value" id="micro">0</div>
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+/* ================= FULL GLOBAL MARKET LIST ================= */
+const pairs = [
+/* MAJORS */
+"EURUSD","GBPUSD","USDJPY","USDCHF","USDCAD","AUDUSD","NZDUSD",
+
+/* MINORS */
+"EURGBP","EURJPY","EURCHF","EURCAD","EURAUD","EURNZD",
+"GBPJPY","GBPCHF","GBPAUD","GBPCAD","GBPNZD",
+"AUDJPY","AUDNZD","AUDCAD","AUDCHF",
+"CADJPY","CADCHF",
+"CHFJPY",
+
+/* EXOTICS */
+"USDTRY","USDMXN","USDZAR","USDSEK","USDNOK",
+"EURTRY","EURZAR","EURMXN",
+"GBPZAR","GBPMXN",
+
+/* METALS */
+"XAUUSD","XAGUSD",
+
+/* INDEX / BONUS */
+"US30","NAS100","SPX500"
+];
+
+/* ================= FILTER MARKET ================= */
+function filterPairs(){
+
+  let input = document.getElementById("search").value.toUpperCase();
+  let box = document.getElementById("dropdown");
+
+  box.innerHTML = "";
+
+  if(!input){
+    box.style.display="none";
+    return;
+  }
+
+  let filtered = pairs.filter(p => p.includes(input));
+
+  if(filtered.length === 0){
+    box.style.display="none";
+    return;
+  }
+
+  filtered.forEach(p=>{
+    let div = document.createElement("div");
+    div.className="marketItem";
+    div.innerText=p;
+
+    div.onclick=()=>{
+      document.getElementById("pair").value=p;
+      document.getElementById("search").value="";
+      box.style.display="none";
+    };
+
+    box.appendChild(div);
+  });
+
+  box.style.display="block";
+}
+
+/* ================= PIP VALUE ================= */
+function pipValue(pair){
+  if(pair==="XAUUSD") return 10;
+  if(pair==="XAGUSD") return 5;
+  if(pair.includes("JPY")) return 9;
+  return 10;
+}
+
+/* ================= CALCULATE ================= */
+function calc(){
+
+  let balance=parseFloat(document.getElementById("balance").value);
+  let risk=parseFloat(document.getElementById("risk").value);
+  let sl=parseFloat(document.getElementById("sl").value);
+  let pair=document.getElementById("pair").value;
+
+  if(isNaN(balance)||isNaN(risk)||isNaN(sl)){
+    alert("Enter valid values");
+    return;
+  }
+
+  let riskAmount = balance*(risk/100);
+  let lot = riskAmount/(sl*pipValue(pair));
+
+  let units = lot*100000;
+  let mini = lot*10;
+  let micro = lot*100;
+
+  document.getElementById("riskAmt").innerText="$"+riskAmount.toFixed(2);
+  document.getElementById("units").innerText=units.toFixed(0);
+  document.getElementById("lots").innerText=lot.toFixed(2);
+  document.getElementById("mini").innerText=mini.toFixed(2);
+  document.getElementById("micro").innerText=micro.toFixed(2);
+}
+
+</script>
+
+</body>
+</html>

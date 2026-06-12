@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Payment | GFx</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+
+body{
+background:#050505;
+color:#fff;
+font-family:'Inter',sans-serif;
+}
+
+.payment-hero{
+padding:180px 10% 80px;
+text-align:center;
+}
+
+.payment-hero h1{
+font-size:4rem;
+font-family:'Poppins',sans-serif;
+margin-bottom:20px;
+}
+
+.payment-hero span{
+color:#2563eb;
+}
+
+.payment-hero p{
+max-width:700px;
+margin:auto;
+color:#aaa;
+line-height:1.8;
+}
+
+.payment-grid{
+padding:0 10% 100px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+}
+
+.payment-card{
+background:#111;
+border:1px solid rgba(255,255,255,.05);
+border-radius:25px;
+padding:40px;
+text-align:center;
+transition:.35s;
+cursor:pointer;
+}
+
+.payment-card:hover{
+transform:translateY(-10px);
+border-color:#2563eb;
+box-shadow:0 0 40px rgba(37,99,235,.15);
+}
+
+.payment-icon{
+width:90px;
+height:90px;
+margin:auto;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:35px;
+margin-bottom:20px;
+}
+
+.paypal{
+background:rgba(0,87,255,.15);
+color:#0070ff;
+}
+
+.crypto{
+background:rgba(249,115,22,.15);
+color:#f97316;
+}
+
+.skrill{
+background:rgba(168,85,247,.15);
+color:#a855f7;
+}
+
+.payment-card h3{
+margin-bottom:15px;
+}
+
+.payment-card p{
+color:#aaa;
+line-height:1.7;
+}
+
+.pay-btn{
+display:inline-block;
+margin-top:20px;
+padding:12px 25px;
+background:#2563eb;
+border-radius:50px;
+color:white;
+text-decoration:none;
+font-weight:600;
+}
+
+.crypto-box{
+display:none;
+margin:0 10% 60px;
+background:#111;
+border-radius:25px;
+padding:40px;
+text-align:center;
+}
+
+.crypto-box img{
+width:220px;
+margin:25px auto;
+display:block;
+}
+
+.wallet-address{
+background:#1a1a1a;
+padding:15px;
+border-radius:15px;
+margin-top:20px;
+word-break:break-all;
+color:#f97316;
+font-weight:600;
+}
+
+.verify-box{
+margin:0 10% 100px;
+background:#111;
+padding:50px;
+border-radius:25px;
+text-align:center;
+}
+
+.verify-box h2{
+margin-bottom:20px;
+font-size:2rem;
+}
+
+.verify-box p{
+color:#aaa;
+line-height:1.8;
+}
+
+.contact-method{
+margin-top:25px;
+font-size:18px;
+}
+
+.contact-method div{
+margin:15px 0;
+}
+
+.notice{
+margin-top:25px;
+color:#f97316;
+font-weight:600;
+}
+
+.back-btn{
+display:inline-block;
+margin-top:30px;
+padding:15px 35px;
+border-radius:50px;
+background:#2563eb;
+color:white;
+text-decoration:none;
+}
+
+.payment-card{
+position:relative;
+overflow:hidden;
+}
+
+.recommended-badge{
+position:absolute;
+top:18px;
+right:-42px;
+width:170px;
+padding:8px 0;
+background:linear-gradient(135deg,#f59e0b,#fbbf24);
+color:#000;
+font-size:11px;
+font-weight:700;
+text-align:center;
+letter-spacing:1px;
+transform:rotate(35deg);
+box-shadow:0 4px 15px rgba(0,0,0,.25);
+z-index:10;
+}
+
+.copy-popup{
+position:fixed;
+bottom:30px;
+left:50%;
+transform:translateX(-50%) translateY(30px);
+background:#16a34a;
+color:#fff;
+padding:12px 18px;
+border-radius:10px;
+font-size:14px;
+font-weight:600;
+box-shadow:0 10px 30px rgba(0,0,0,.3);
+opacity:0;
+transition:.3s ease;
+z-index:9999;
+pointer-events:none;
+}
+
+.copy-popup.show{
+opacity:1;
+transform:translateX(-50%) translateY(0);
+}
+
+@media(max-width:900px){
+
+.payment-grid{
+grid-template-columns:1fr;
+}
+
+.payment-hero h1{
+font-size:2.8rem;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="header">
+
+<div class="logo">
+<a href="index.html">GFx</a>
+</div>
+
+<nav class="navbar">
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="resources.html">Free Resources</a></li>
+<li><a href="products.html">Premium Products</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+</nav>
+
+</header>
+
+<section class="payment-hero">
+
+<h1>Complete Your <span>Purchase</span></h1>
+
+<p>
+Choose your preferred payment method below to gain access to
+The Scalper's Playbook.
+</p>
+
+</section>
+
+<section class="payment-grid">
+
+<!-- PAYPAL -->
+
+<div class="payment-card">
+
+<div class="payment-icon paypal">
+<i class="fab fa-paypal"></i>
+</div>
+
+<h3>PayPal</h3>
+
+<p>
+Fast and secure online payment.
+</p>
+
+<a href="https://www.paypal.com/ncp/payment/EP99MFSDQEYJW"
+target="_blank"
+class="pay-btn">
+Pay with PayPal
+</a>
+
+</div>
+
+<!-- CRYPTO -->
+<div class="payment-card"
+>
+
+<div class="recommended-badge">
+RECOMMENDED
+</div>
+
+<div class="payment-icon crypto">
+<i class="fas fa-coins"></i>
+</div>
+
+<h3>USDT (TRC20)</h3>
+
+<p>
+Pay using USDT on the TRON network.
+</p>
+
+<div class="pay-btn" onclick="openCrypto()">
+Show Wallet
+</div>
+
+</div>
+
+<!-- SKRILL -->
+
+<div class="payment-card">
+
+<div class="payment-icon skrill">
+<i class="fas fa-wallet"></i>
+</div>
+
+<h3>Skrill</h3>
+
+<p>
+Send payment to:
+</p>
+
+<strong>
+bgaweshana@gmail.com
+</strong>
+
+</div>
+
+</section>
+<div id="cryptoBox" class="crypto-box" style="text-align:center;">
+
+  <h2>USDT TRC20 Wallet</h2>
+
+  <img src="images/usdt.jpg" alt="USDT QR">
+
+  <div style="display:flex; justify-content:center; align-items:center; gap:10px; margin-top:15px;">
+
+    <span id="usdtAddress" style="font-weight:500;">
+      TE54QuW7euavhhqMHWqyZU52eswX3LxRpp
+    </span>
+
+    <button 
+  onclick="copyUSDT()"
+  style="
+    background:orange;
+    border:none;
+    padding:6px 12px;
+    cursor:pointer;
+    color:#000;
+    border-radius:5px;
+    font-size:12px;
+  "
+  onmouseover="this.style.opacity='0.8'"
+  onmouseout="this.style.opacity='1'"
+>
+  Copy
+</button>
+
+  </div>
+
+  <div style="
+margin-top:20px;
+background:rgba(245,158,11,.08);
+border:1px solid rgba(245,158,11,.25);
+border-radius:12px;
+padding:16px;
+text-align:left;
+">
+
+<div style="
+color:#f59e0b;
+font-weight:700;
+margin-bottom:8px;
+">
+⚠ Important Note
+</div>
+
+<p style="
+margin:0;
+color:#aaa;
+line-height:1.7;
+font-size:14px;
+">
+Please send the payment using the <strong style="color:#fff;">TRON (TRC20)</strong> network only.
+Transactions sent through other networks may be permanently lost and cannot be recovered.
+</p>
+
+</div>
+
+</div>
+<section class="verify-box">
+
+<h2>Payment Verification</h2>
+
+<p>
+After completing your payment, send your payment proof,
+transaction ID, and email address for verification.
+</p>
+
+<div class="contact-method">
+
+<div>
+  <i class="fas fa-envelope" style="color:orange; margin-right:6px;"></i>
+  <a href="mailto:gfxteamglobal@gmail.com"
+     style="color:orange; text-decoration:none;"
+     onmouseover="this.style.opacity='0.7'"
+     onmouseout="this.style.opacity='1'">
+     gfxteamglobal@gmail.com
+  </a>
+</div>
+
+<div>
+  <i class="fab fa-telegram-plane" style="color:orange; margin-right:6px;"></i>
+  <a href="https://t.me/Kaveejafx" target="_blank"
+     style="color:orange; text-decoration:none;"
+     onmouseover="this.style.opacity='0.7'"
+     onmouseout="this.style.opacity='1'">
+     Kaveejafx
+  </a>
+</div>
+
+<p><h5>
+Once verified, your ebook will be provided.
+</p></h5>
+
+<a href="products.html" class="back-btn">
+Back To Product
+</a>
+
+</section>
+
+<script>
+
+function toggleCrypto(){
+
+const box = document.getElementById("cryptoBox");
+
+if(box.style.display === "block"){
+box.style.display = "none";
+}else{
+box.style.display = "block";
+}
+
+}
+
+</script>
+
+<div id="copyPopup" class="copy-popup">
+  Copied to clipboard ✓
+</div>
+<script>
+function copyUSDT(){
+
+const text = document.getElementById("usdtAddress").innerText;
+
+navigator.clipboard.writeText(text).then(() => {
+
+const popup = document.getElementById("copyPopup");
+
+popup.classList.add("show");
+
+setTimeout(() => {
+popup.classList.remove("show");
+}, 2000);
+
+});
+
+}
+</script>
+<script>
+
+function toggleCrypto(){
+
+const box = document.getElementById("cryptoBox");
+
+if(box.style.display === "block"){
+box.style.display = "none";
+}else{
+box.style.display = "block";
+setTimeout(() => {
+box.scrollIntoView({behavior:"smooth", block:"start"});
+}, 100);
+}
+
+}
+
+function openCrypto(){
+
+const box = document.getElementById("cryptoBox");
+
+box.style.display = "block";
+
+setTimeout(() => {
+box.scrollIntoView({behavior:"smooth", block:"start"});
+}, 100);
+
+}
+
+</script>
+</body>
+
+</html>

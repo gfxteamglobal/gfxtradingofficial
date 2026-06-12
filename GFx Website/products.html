@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Premium Products | GFx</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+.products-hero{
+padding:180px 10% 100px;
+text-align:center;
+}
+
+.products-hero h1{
+font-size:4rem;
+margin-bottom:20px;
+}
+
+.products-hero p{
+max-width:700px;
+margin:auto;
+color:#aaa;
+}
+
+.products-section{
+padding:0 10% 120px;
+}
+
+.product-container{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:60px;
+align-items:center;
+}
+
+.product-image{
+background:#111;
+padding:40px;
+border-radius:30px;
+text-align:center;
+}
+
+.product-image img{
+width:100%;
+max-width:350px;
+}
+
+.product-details{
+background:#111;
+padding:50px;
+border-radius:30px;
+}
+
+.product-details h2{
+font-size:3rem;
+margin-bottom:15px;
+}
+
+.price{
+font-size:2.5rem;
+font-weight:700;
+color:#f97316;
+margin-bottom:25px;
+}
+
+.product-details ul{
+list-style:none;
+margin-bottom:35px;
+}
+
+.product-details ul li{
+padding:12px 0;
+border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.buy-btn{
+display:inline-block;
+padding:15px 40px;
+border-radius:50px;
+background:#2563eb;
+color:#fff;
+font-weight:600;
+}
+
+.buy-btn:hover{
+transform:translateY(-3px);
+}
+
+@media(max-width:900px){
+
+.product-container{
+grid-template-columns:1fr;
+}
+
+.products-hero h1{
+font-size:3rem;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="header">
+
+<div class="logo">
+<a href="index.html">GFx</a>
+</div>
+
+<nav class="navbar">
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="resources.html">Free Resources</a></li>
+<li><a href="products.html" class="active">Premium Products</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+</nav>
+
+</header>
+
+<section class="products-hero">
+
+<h1>Premium Products</h1>
+
+<p>
+Gain access to premium educational content and resources designed for serious traders.
+</p>
+
+</section>
+
+<section class="products-section">
+
+<div class="product-container">
+
+<div class="product-image">
+<img src="images/book.jpeg" alt="The Scalper's Playbook">
+</div>
+
+<div class="product-details">
+
+<h2>The Scalper's Playbook</h2>
+
+<div class="price">
+<span style="text-decoration:line-through; color:#666; font-size:1.5rem; margin-right:10px;">
+$79
+</span>
+$39
+</div>
+
+<ul>
+<li>✔ Complete Gold Scalping Framework</li>
+<li>✔ Market Structure Concepts</li>
+<li>✔ Risk Management System</li>
+<li>✔ Psychology & Discipline</li>
+<li>✔ Real Trading Examples</li>
+<li>✔ Personal Trading Workflow</li>
+<li>✔ Lifetime Access</li>
+</ul>
+
+<a href="payment.html" class="buy-btn">
+Buy Now
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<div class="footer-grid">
+
+<div>
+<h3>GFx</h3>
+<p>Professional Trading Education & Premium Resources.</p>
+</div>
+
+<div>
+<h3>Quick Links</h3>
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="resources.html">Resources</a>
+<a href="products.html">Products</a>
+<a href="contact.html">Contact</a>
+</div>
+
+<div>
+<h3>Social Media</h3>
+<a href="#">Instagram</a>
+<a href="#">TikTok</a>
+<a href="#">YouTube</a>
+<a href="https://t.me/Kaveejafx">Telegram</a>
+</div>
+
+<div>
+<h3>Email</h3>
+<p>gfxteam@gmail.com</p>
+</div>
+
+</div>
+
+<div class="copyright">
+© 2026 GFx. All Rights Reserved.
+</div>
+
+</footer>
+
+<script src="js/main.js"></script>
+
+</body>
+</html>

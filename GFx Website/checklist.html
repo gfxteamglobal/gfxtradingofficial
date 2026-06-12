@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GFx Trading Checklist</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:#f5f7fa;
+padding:40px;
+min-height:100vh;
+color:#111;
+}
+
+.container{
+max-width:1100px;
+margin:auto;
+animation:fadeUp 0.8s ease;
+}
+
+.header{
+text-align:center;
+margin-bottom:40px;
+}
+
+.logo{
+font-size:40px;
+font-weight:800;
+letter-spacing:2px;
+}
+
+.logo span{
+color:#4f46e5;
+}
+
+.subtitle{
+margin-top:10px;
+color:#777;
+}
+
+.card{
+background:white;
+border-radius:24px;
+padding:30px;
+box-shadow:
+0 10px 30px rgba(0,0,0,0.08);
+margin-bottom:25px;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-4px);
+}
+
+.section-title{
+font-size:24px;
+font-weight:700;
+margin-bottom:25px;
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.section-title i{
+color:#4f46e5;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:20px;
+}
+
+.item{
+padding:18px;
+border:1px solid #eee;
+border-radius:18px;
+background:#fafafa;
+transition:.3s;
+}
+
+.item:hover{
+border-color:#4f46e5;
+transform:translateY(-2px);
+}
+
+.label{
+font-weight:600;
+margin-bottom:12px;
+}
+
+.select-group{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+}
+
+.option{
+padding:10px 16px;
+border-radius:12px;
+cursor:pointer;
+background:white;
+border:1px solid #ddd;
+transition:.3s;
+font-weight:600;
+}
+
+.option:hover{
+background:#4f46e5;
+color:white;
+}
+
+.option.active{
+background:linear-gradient(135deg,#4f46e5,#7c3aed);
+color:white;
+border-color:transparent;
+box-shadow:0 8px 20px rgba(79,70,229,.25);
+transform:translateY(-2px);
+}
+
+
+input[type="checkbox"]{
+width:22px;
+height:22px;
+accent-color:#4f46e5;
+cursor:pointer;
+}
+
+.check-row{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:12px 0;
+border-bottom:1px solid #eee;
+}
+
+.check-row:last-child{
+border:none;
+}
+
+textarea{
+width:100%;
+height:140px;
+padding:15px;
+border-radius:15px;
+border:1px solid #ddd;
+resize:none;
+font-size:15px;
+margin-top:15px;
+}
+
+.score{
+text-align:center;
+padding:30px;
+}
+
+.progress{
+height:18px;
+background:#eee;
+border-radius:20px;
+overflow:hidden;
+margin-top:20px;
+}
+
+.bar{
+height:100%;
+width:0%;
+background:linear-gradient(90deg,#4f46e5,#7c3aed);
+transition:1s;
+}
+
+.score-value{
+font-size:40px;
+font-weight:800;
+margin-top:15px;
+color:#4f46e5;
+}
+
+.ebook-box{
+margin-top:20px;
+padding:20px;
+border-radius:16px;
+background:linear-gradient(135deg,#4f46e5,#7c3aed);
+color:white;
+}
+
+.ebook-box h3{
+margin-bottom:10px;
+}
+
+.ebook-box p{
+line-height:1.6;
+opacity:.95;
+}
+
+.btn{
+margin-top:15px;
+display:inline-block;
+padding:12px 22px;
+background:white;
+color:#4f46e5;
+font-weight:700;
+border-radius:12px;
+text-decoration:none;
+}
+
+.footer{
+text-align:center;
+margin-top:25px;
+color:#888;
+}
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(30px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="header">
+<div class="logo">GF<span>x</span> Trading Checklist</div>
+<div class="subtitle">Professional Trade Execution Framework</div>
+</div>
+
+<!-- BEFORE TRADE -->
+
+<div class="card">
+
+<div class="section-title">
+<i class="fas fa-chart-line"></i>
+Before Trade
+</div>
+
+<div class="grid">
+
+<div class="item">
+<div class="label">Psychology</div>
+
+<div class="select-group">
+<button class="option">😊 Good</button>
+<button class="option">😐 Neutral</button>
+<button class="option">😕 Bad</button>
+</div>
+</div>
+
+<div class="item">
+<div class="label">Bias</div>
+
+<div class="select-group">
+<button class="option">📈 Bullish</button>
+<button class="option">📉 Bearish</button>
+<button class="option">↔ Range</button>
+</div>
+</div>
+
+<div class="item">
+<div class="label">Session</div>
+
+<div class="select-group">
+<button class="option">Asia</button>
+<button class="option">Pre-London</button>
+<button class="option">London</button>
+<button class="option">Pre-NewYork</button>
+<button class="option">NYSE</button>
+</div>
+</div>
+
+<div class="item">
+<div class="label">Minimum 3 Confluences?</div>
+<input type="checkbox" class="score-check">
+</div>
+
+<div class="item">
+<div class="label">Higher Timeframe Alignment?</div>
+<input type="checkbox" class="score-check">
+</div>
+
+<div class="item">
+<div class="label">Risk : Reward Valid?</div>
+<input type="checkbox" class="score-check">
+</div>
+
+</div>
+
+</div>
+
+<!-- EXECUTION -->
+
+<div class="card">
+
+<div class="section-title">
+<i class="fas fa-crosshairs"></i>
+Trade Execution Checklist
+</div>
+
+<div class="check-row">
+<span>Clean Market Structure</span>
+<input type="checkbox" class="score-check">
+</div>
+
+<div class="check-row">
+<span>Liquidity Grab Confirmed</span>
+<input type="checkbox" class="score-check">
+</div>
+
+<div class="check-row">
+<span>Range Confirmation</span>
+<input type="checkbox" class="score-check">
+</div>
+
+<div class="check-row">
+<span>Entry Model Valid</span>
+<input type="checkbox" class="score-check">
+</div>
+
+<div class="check-row">
+<span>Major News Checked</span>
+<input type="checkbox" class="score-check">
+</div>
+
+<div class="check-row">
+<span>No FOMO Entry</span>
+<input type="checkbox" class="score-check">
+</div>
+
+<div class="ebook-box">
+<h3>Need Help Confirming Ranges?</h3>
+
+<p>
+If you're struggling with market structure, liquidity grabs,
+and range confirmations, check the Premium Products section
+and learn the complete framework from the GFx Trading E-Book.
+</p>
+
+<a href="products.html" class="btn">Premium Products</a>
+
+</div>
+
+</div>
+
+<!-- AFTER TRADE -->
+
+<div class="card">
+
+<div class="section-title">
+<i class="fas fa-clipboard-check"></i>
+After Trade Review
+</div>
+
+<div class="check-row">
+<span>Rules Followed?</span>
+<input type="checkbox" class="score-check">
+</div>
+
+<div class="check-row">
+<span>Trade Executed According To Plan?</span>
+<input type="checkbox" class="score-check">
+</div>
+
+<div class="check-row">
+<span>Screenshot Saved?</span>
+<input type="checkbox" class="score-check">
+</div>
+
+<div class="check-row">
+<span>Journal Updated?</span>
+<input type="checkbox" class="score-check">
+</div>
+
+<div class="check-row">
+<span>Emotions Controlled?</span>
+<input type="checkbox" class="score-check">
+</div>
+
+<textarea placeholder="Lessons learned from this trade..."></textarea>
+
+</div>
+
+<!-- SCORE -->
+
+<div class="card score">
+
+<h2>Trade Quality Score</h2>
+
+<div class="progress">
+<div class="bar" id="bar"></div>
+</div>
+
+<div class="score-value" id="score">
+0%
+</div>
+
+</div>
+
+<div class="footer">
+GFx Professional Trading Framework
+</div>
+
+</div>
+
+<script>
+
+const checks = document.querySelectorAll('.score-check');
+const score = document.getElementById('score');
+const bar = document.getElementById('bar');
+
+function updateScore(){
+
+let total = checks.length;
+let checked = 0;
+
+checks.forEach(c=>{
+if(c.checked) checked++;
+});
+
+let percent = Math.round((checked/total)*100);
+
+score.innerText = percent + "%";
+bar.style.width = percent + "%";
+
+}
+
+checks.forEach(c=>{
+c.addEventListener('change',updateScore);
+});
+
+</script>
+
+</body>
+</html>
